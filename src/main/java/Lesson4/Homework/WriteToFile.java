@@ -49,7 +49,7 @@ public class WriteToFile {
     }
 
     private void FileForWrite(String words, int nums) {
-        File file = new File("FileForWrite.txt");
+        File file = new File("src/main/resources/FileForWrite.txt");
         try (FileWriter writer = new FileWriter(file, true);) {
             writer.write(nums + words + "\n");
         } catch (IOException e) {

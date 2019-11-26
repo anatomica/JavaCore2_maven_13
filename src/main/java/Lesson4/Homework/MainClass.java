@@ -17,7 +17,7 @@ public class MainClass {
         print.t3.join();
 
         System.out.println("\n\n" + "Задание 4.2");
-        File file = new File("FileForWrite.txt");
+        File file = new File("src/main/resources/FileForWrite.txt");
         System.out.println(file.canWrite());
         new WriteToFile(" строка, потока № 1", " строка, потока № 2", " строка 3 потока № 3");
 
