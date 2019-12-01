@@ -4,8 +4,11 @@ import Lesson2.Homework.Server.gson.*;
 import org.apache.log4j.Logger;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -145,9 +148,15 @@ public class ClientHandler {
     }
 
     private static void connection() throws ClassNotFoundException, SQLException {
-        Class.forName("org.sqlite.JDBC");
-        conn = DriverManager.getConnection("jdbc:sqlite::resource:LoginData.db");
-        stmt = conn.createStatement();
+        try {
+            URI uri = BaseAuthService.class.getProtectionDomain().getCodeSource().getLocation().toURI();
+            String pathToDB = new File(uri).getParent() + "\\LoginData.db";
+            Class.forName("org.sqlite.JDBC");
+            conn = DriverManager.getConnection("jdbc:sqlite:" + pathToDB);
+            stmt = conn.createStatement();
+        } catch (URISyntaxException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void disconect() throws SQLException {
