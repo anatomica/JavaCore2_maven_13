@@ -1,4 +1,5 @@
 package Lesson2.Homework.Server.auth;
+import Lesson2.Homework.Server.ClientHandler;
 import java.sql.*;
 
 public class BaseAuthService implements AuthService {
@@ -41,6 +42,7 @@ public class BaseAuthService implements AuthService {
     @Override
     public void start() {
         System.out.println("Сервис авторизации запущен!");
+        ClientHandler.logger.info("Сервис авторизации запущен!");
     }
 
     @Override

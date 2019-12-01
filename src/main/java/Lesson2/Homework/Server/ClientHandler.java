@@ -1,6 +1,7 @@
 package Lesson2.Homework.Server;
 import Lesson2.Homework.Server.auth.BaseAuthService;
 import Lesson2.Homework.Server.gson.*;
+import org.apache.log4j.Logger;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -9,7 +10,7 @@ import java.sql.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-class ClientHandler {
+public class ClientHandler {
 
     private MyServer myServer;
     private String clientName;
@@ -19,6 +20,7 @@ class ClientHandler {
     private ChangeNick changeNick;
     private static Connection conn;
     private static Statement stmt;
+    public static Logger logger = Logger.getLogger("file");
 
     ClientHandler(Socket socket, MyServer myServer) {
         try {
@@ -43,6 +45,7 @@ class ClientHandler {
                 }
             });
         } catch (IOException e) {
+            logger.info("Ошибка создания подключения к клиенту!", e);
             throw new RuntimeException("Ошибка создания подключения к клиенту!", e);
         }
     }
@@ -50,6 +53,7 @@ class ClientHandler {
     private void readMessages() throws IOException, SQLException {
         while (true) {
             String clientMessage = in.readUTF();
+            logger.info(String.format("Сообщение/команда: '%s' от клиента: %s%n", clientMessage, clientName));
             System.out.printf("Сообщение: '%s' от клиента: %s%n", clientMessage, clientName);
             Message m = Message.fromJson(clientMessage);
             switch (m.command) {
@@ -109,6 +113,7 @@ class ClientHandler {
             clientName = nick;
             myServer.broadcastMessage(clientName + " онлайн!");
             myServer.subscribe(this);
+            logger.info("Подключился клиент: " + clientName);
         }
         return true;
     }
