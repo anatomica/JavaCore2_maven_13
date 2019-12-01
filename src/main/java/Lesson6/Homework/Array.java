@@ -7,7 +7,6 @@ public class Array {
 
         int[] array = {1, 2, 4, 4, 2, 3, 4, 1, 7};
         System.out.println("Входной массив: " + Arrays.toString(array));
-        replaceNums(array);
         System.out.println("Массив после оброботки: " + Arrays.toString(replaceNums(array)));
 
     }
@@ -27,8 +26,7 @@ public class Array {
         }
 
         for (int i = 0; i < stringArray.length(); i++) {
-            if (stringArray.charAt(i) == '4')
-                break;
+            if (stringArray.charAt(i) == '4') break;
             if ((stringArray.charAt(i) != ' ') && (stringArray.charAt(i) != ',') && (stringArray.charAt(i) != ']')) {
                 nums[count] = Integer.parseInt(String.valueOf(stringArray.charAt(i)));
                 count--;
