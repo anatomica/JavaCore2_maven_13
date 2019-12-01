@@ -12,7 +12,7 @@ public class Array {
 
     }
 
-    public static int[] replaceNums(int[] array) {
+    static int[] replaceNums(int[] array) {
         int[] nums = new int[2];
         int count = 1;
 
@@ -35,5 +35,14 @@ public class Array {
             }
         }
         return nums;
+    }
+
+    static boolean OneFourNums(int[] array) {
+        for (int value : array) {
+            if (value == 4 || value == 1) {
+                return true;
+            }
+        }
+        return false;
     }
 }

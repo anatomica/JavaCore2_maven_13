@@ -42,10 +42,10 @@ public class ArrayTest {
     public  void shutdown() {
         System.out.println("Test End");
     }
-    
+
     @Test
-    public void testArrayCheck() {
-        Assert.assertArrayEquals(result, Array.replaceNums(array));
+    public void arrayCheck() {
+        Assert.assertArrayEquals(Array.replaceNums(array), result);
     }
 
 }
