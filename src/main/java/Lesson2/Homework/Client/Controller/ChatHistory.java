@@ -14,11 +14,13 @@ class ChatHistory {
     private URL res = getClass().getResource(resource);
     private static File fileHistory;
     private static String pathToHistory;
+    private static String winDB = "\\ChatHistory.txt";
+    private static String linuxDB = "/ChatHistory.txt";
 
     static void createFile() {
         try {
             URI uri = MessageService.class.getProtectionDomain().getCodeSource().getLocation().toURI();
-            pathToHistory = new File(uri).getParent() + "\\ChatHistory.txt";
+            pathToHistory = new File(uri).getParent() + winDB;
             System.out.println(pathToHistory);
             fileHistory = new File(pathToHistory);
             if (fileHistory.createNewFile()) System.out.println("Файл истории создан!");

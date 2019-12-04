@@ -24,6 +24,8 @@ public class ClientHandler {
     private static Connection conn;
     private static Statement stmt;
     public static Logger logger = Logger.getLogger("file");
+    public static String winDB = "\\LoginData.db";
+    public static String linuxDB = "/LoginData.db";
 
     ClientHandler(Socket socket, MyServer myServer) {
         try {
@@ -150,7 +152,7 @@ public class ClientHandler {
     private static void connection() throws ClassNotFoundException, SQLException {
         try {
             URI uri = BaseAuthService.class.getProtectionDomain().getCodeSource().getLocation().toURI();
-            String pathToDB = new File(uri).getParent() + "\\LoginData.db";
+            String pathToDB = new File(uri).getParent() + winDB;
             Class.forName("org.sqlite.JDBC");
             conn = DriverManager.getConnection("jdbc:sqlite:" + pathToDB);
             stmt = conn.createStatement();
