@@ -17,28 +17,28 @@ public class MainClass {
         int degrease2 = 2;
 
         try {
-            excitable:
+            output:
             for (int i = 0; i < COLUMN; i++) {
                 for (int j = stopBefore; j < COLUMN - stopBefore; j++) {
                     if (j != COLUMN - degrease1) {
-                        if (array[i][j] != 0) break excitable;
+                        if (array[i][j] != 0) break output;
                         array[i][j] = number;
                         number++;
                     }
                     if (j == COLUMN - degrease1) {
                         for (int k = stopBefore; k < LINE - stopBefore; k++) {
-                            if (array[k][j] != 0) break excitable;
+                            if (array[k][j] != 0) break output;
                             array[k][j] = number;
                             number++;
                         }
                         for (int k = (COLUMN - degrease2); k >= stopBefore; k--) {
-                            if (array[LINE - degrease1][k] != 0) break excitable;
+                            if (array[LINE - degrease1][k] != 0) break output;
                             array[LINE - degrease1][k] = number;
                             number++;
                         }
                         stopBefore++;
                         for (int k = (LINE - degrease2); k >= stopBefore; k--) {
-                            if (array[k][i] != 0) break excitable;
+                            if (array[k][i] != 0) break output;
                             array[k][i] = number;
                             number++;
                         }
